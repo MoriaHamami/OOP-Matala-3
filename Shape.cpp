@@ -7,6 +7,10 @@
 // Creates a new shape (name=sn,centerPoint = (0,0))
 Shape::Shape(const char *sn = "noName")
 {
+    m_shapeName = new char[strlen(sn)];
+    strcpy(m_shapeName, sn);
+    m_centerPoint = (0,0);
+    s_totalNumOfShapes++;
 }
 // copy constructor of shape
 Shape::Shape(const Shape &other)
@@ -28,6 +32,7 @@ void Shape::setCenter(const Point &p)
 // returns the shape's name
 const char *Shape::getName() const
 {
+    return m_shapeName;
 }
 // returns the center point
 Point Shape::getCenter() const
@@ -40,6 +45,7 @@ void Shape::setShape(const char *sn, const Point &other)
 // returnS the total number of shapes
 int Shape::numOfShapes()
 {
+    return s_totalNumOfShapes;
 }
 
 // operator=

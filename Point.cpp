@@ -18,18 +18,22 @@ Point::~Point()
 // returns the x
 int Point::getX() const
 {
+    return m_x;
 }
 // returns the y
 int Point::getY() const
 {
+    return m_y;
 }
 // sets the x
 void Point::setX(int x)
 {
+    m_x = x;
 }
 // sets the y
 void Point::setY(int y)
 {
+    m_y = y;
 }
 // sets the x and y
 void Point::setPoint(int x, int y)
