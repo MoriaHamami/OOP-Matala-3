@@ -59,7 +59,45 @@ int allShapes::getSize() const
 // add a new shape (deep copy) to the end of array
 void allShapes::addShape(Shape *newShape)
 {
-    m_arr += newShape;
+       ++m_size;
+    Shape **temp = new Shape *[m_size];
+    for (int i = 0; i < m_size - 1; i++)
+    {
+        if (typeid(*m_arr[i]) == typeid(Circle))
+        {
+            temp[i] = new Circle(*((Circle *)m_arr[i]));
+        }
+        else if (typeid(*m_arr[i]) == typeid(Square))
+        {
+
+            temp[i] = new Square(*((Square *)m_arr[i]));
+        }
+        else if (typeid(*m_arr[i]) == typeid(Quad))
+        {
+
+            temp[i] = new Quad(*((Quad *)m_arr[i]));
+        }
+        delete m_arr[i];
+    }
+    delete[] m_arr;
+    // Copy last shape to the last cell
+    if (typeid(newShape) == typeid(Circle))
+    {
+        temp[m_size - 1] = new Circle(*((Circle *)newShape));
+    }
+    else if (typeid(newShape) == typeid(Square))
+    {
+
+        temp[m_size - 1] = new Square(*((Square *)newShape));
+    }
+    else if (typeid(newShape) == typeid(Quad))
+    {
+
+        temp[m_size - 1] = new Quad(*((Quad *)newShape));
+    }
+
+    // m_arr = new Shape *[m_size];
+    m_arr = temp;
 }
 // remove shape by index
 void allShapes::removeShape(int index)
@@ -188,12 +226,25 @@ const allShapes &allShapes::operator+=(Shape *newS)
 // returns the shape located at index ind
 Shape *allShapes::operator[](int ind) const
 {
+    if (m_arr == nullptr) return nullptr;
+    return m_arr[ind];
 }
 // returns a new allShape with all elements located at this and other
 allShapes allShapes::operator+(const allShapes &other) const
 {
+    // SHOULD I HAVE ALLOCATED A NEW SPACE AND FREED THE OTHERS?
+     allShapes resultShape;
+    for (int i = 0; i < m_size; i++) {
+        resultShape.addShape(m_arr[i]);
+    }
+    for (int i = 0; i < other.m_size; i++) {
+        resultShape.addShape(other.m_arr[i]);
+    }
+    // for (int i = 0; i < resultShape.m_size; i++) cout << resultShape.m_arr[i] << endl;
+    return resultShape;
 }
 // returns the number of elements
 allShapes::operator int() const
 {
+        return m_size;
 }
