@@ -5,10 +5,14 @@
 
 Point::Point(int x = 0, int y = 0)
 {
+    setX(x);
+    setY(y);
 }
 
 Point::Point(const Point &other)
 {
+    setX(other.getX());
+    setY(other.getY());
 }
 
 Point::~Point()
@@ -38,10 +42,14 @@ void Point::setY(int y)
 // sets the x and y
 void Point::setPoint(int x, int y)
 {
+    m_x = x;
+    m_y = y;
 }
 // sets the point with other values
 void Point::setPoint(const Point &other)
 {
+    m_x = other.getX();
+    m_y = other.getY();
 }
 
 // returns true if and only if the two points are equal
