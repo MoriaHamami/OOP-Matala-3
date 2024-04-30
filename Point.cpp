@@ -1,9 +1,12 @@
 #include "Point.h"
 
+// MORIA HAMAMI
+// 315464347
+
 // int m_x;
 // 	int m_y;
 
-Point::Point(int x = 0, int y = 0)
+Point::Point(int x, int y)
 {
     setX(x);
     setY(y);

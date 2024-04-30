@@ -3,16 +3,23 @@
 #include "Square.h"
 #include "Quad.h"
 
+// MORIA HAMAMI
+// 315464347
+
 // char*		m_shapeName;
 // 	static int	s_totalNumOfShapes;
 // protected: Point		m_centerPoint;
 
+int Shape::s_totalNumOfShapes=0;
+
 // Creates a new shape (name=sn,centerPoint = (0,0))
-Shape::Shape(const char *sn = "noName")
+Shape::Shape(const char *sn)
 {
     m_shapeName = new char[strlen(sn) + 1];
     strcpy(m_shapeName, sn);
     m_centerPoint = Point(0, 0);
+    // if(s_totalNumOfShapes) s_totalNumOfShapes=1;
+    // else 
     s_totalNumOfShapes++;
 }
 // copy constructor of shape
@@ -21,6 +28,8 @@ Shape::Shape(const Shape &other)
     m_shapeName = new char[strlen(other.m_shapeName) + 1];
     strcpy(m_shapeName, other.getName());
     m_centerPoint = Point(other.m_centerPoint);
+    //  if(!s_totalNumOfShapes) s_totalNumOfShapes=1;
+    // else 
     s_totalNumOfShapes++;
 }
 // shape destructor
@@ -30,7 +39,7 @@ Shape::~Shape()
     {
         delete[] m_shapeName;
     }
-    s_totalNumOfShapes--;
+    // s_totalNumOfShapes--;
 }
 
 // sets the shape's name
@@ -66,6 +75,7 @@ void Shape::setShape(const char *sn, const Point &other)
 // returnS the total number of shapes
 int Shape::numOfShapes()
 {
+    if(!s_totalNumOfShapes) s_totalNumOfShapes = 0;
     return s_totalNumOfShapes;
 }
 

@@ -1,9 +1,12 @@
 #include "Circle.h"
 
+// MORIA HAMAMI
+// 315464347
+
 // double m_radius;
 
 // create a circle with radius=1, name=sn and center=(0,0)
-Circle::Circle(double r = 1, const char *sn = "noName") : Shape(sn)
+Circle::Circle(double r, const char *sn ) : Shape(sn)
 {
     setRadius(r);
 }

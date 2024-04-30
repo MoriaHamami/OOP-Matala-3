@@ -1,7 +1,10 @@
 #include "Square.h"
 
+// MORIA HAMAMI
+// 315464347
+
 // constructor. center point = (0,0), name=sn
-Square::Square(double up = 0, double down = 0, double right = 0, double left = 0, const char *sn = "noName") : Quad(up, down, right, left, sn)
+Square::Square(double up, double down, double right, double left, const char *sn) : Quad(up, down, right, left, sn)
 {
 }
 // destructor
