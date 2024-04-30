@@ -23,8 +23,6 @@ allShapes::allShapes(const allShapes &other)
     m_arr = new Shape *[m_size];
     for (int i = 0; i < m_size; i++)
     {
-        // Should I add an asteriks to the the first typeid too?
-        // if (typeid(*(other.m_arr[i])) == typeid(Circle))
         if (typeid(other.m_arr[i]) == typeid(Circle))
         {
             m_arr[i] = new Circle(*((Circle *)other.m_arr[i]));
@@ -39,10 +37,6 @@ allShapes::allShapes(const allShapes &other)
 
             m_arr[i] = new Quad(*((Quad *)other.m_arr[i]));
         }
-        // else
-        // {
-        //     m_arr[i] = new Shape(*((Shape*)other.m_arr[i]));
-        // }
     }
 }
 // destructor to all elements
@@ -76,72 +70,12 @@ void allShapes::addShape(Shape *newShape)
     }
     else
     {
-
         Quad *q = dynamic_cast<Quad *>(newShape);
         if (q)
         {
             *this += new Quad(*q);
         }
     }
-    // ++m_size;
-    // Shape **temp = new Shape *[m_size];
-    // for (int i = 0; i < m_size - 1; i++)
-    // {
-
-    //     if (typeid(m_arr[i]) == typeid(Circle))
-    //     {
-    //         temp[i] = new Circle(*((Circle *)m_arr[i]));
-    //     }
-    //     // else if (typeid(m_arr[i]) == typeid(Square))
-    //     // {
-
-    //     //     temp[i] = new Square(*((Square *)m_arr[i]));
-    //     // }
-    //     // else if (typeid(m_arr[i]) == typeid(Quad))
-    //     else
-    //     {
-
-    //         temp[i] = new Quad(*((Quad *)m_arr[i]));
-    //     }
-    //     // delete m_arr[i];
-    // }
-    // delete[] m_arr;
-    // // Copy last shape to the last cell
-    // if (typeid(*newShape) == typeid(Circle))
-    // {
-    //     temp[m_size - 1] = new Circle(*((Circle *)newShape));
-    // }
-    // // else if (typeid(*newShape) == typeid(Square))
-    // // {
-
-    // //     temp[m_size - 1] = new Square(*((Square *)newShape));
-    // // }
-    // // else if (typeid(*newShape) == typeid(Quad))
-    // else
-    // {
-
-    //     temp[m_size - 1] = new Quad(*((Quad *)newShape));
-    // }
-
-    // m_arr = new Shape *[m_size];
-    // for (int i = 0; i < m_size; i++)
-    // {
-    //     if (typeid(temp[i]) == typeid(Circle))
-    //     {
-    //         m_arr[i] = new Circle(*((Circle *)temp[i]));
-    //     }
-    //     // else if (typeid(temp[i]) == typeid(Square))
-    //     // {
-
-    //     //     m_arr[i] = new Square(*((Square *)temp[i]));
-    //     // }
-    //     // else if (typeid(temp[i]) == typeid(Quad))
-    //     else
-    //     {
-
-    //         m_arr[i] = new Quad(*((Quad *)temp[i]));
-    //     }
-    // }
 }
 // remove shape by index
 void allShapes::removeShape(int index)
@@ -204,37 +138,6 @@ void allShapes::removeShape(int index)
     }
     --m_size;
     temp = nullptr;
-
-    // if (index >= m_size || index < 0)
-    //     return;
-    // if (m_size > 1)
-    // {
-    //     delete m_arr[index];
-    //     // if (typeid(m_arr[m_size - 1]) == typeid(m_arr[index]))
-    //     // {
-    //     m_arr[index] = m_arr[m_size - 1];
-    //     // }
-    //     // else if (typeid(m_arr[m_size-1]) == typeid(Circle))
-    //     // {
-    //     //     m_arr[index] = new Circle(*((Circle *)m_arr[i]));
-    //     // }
-    //     // else if (typeid(m_arr[m_size-1]) == typeid(Square))
-    //     // {
-
-    //     //     m_arr[index] = new Square(*((Square *)m_arr[i]));
-    //     // }
-    //     // else if (typeid(m_arr[m_size-1]) == typeid(Quad))
-    //     // {
-
-    //     //     m_arr[index] = new Quad(*((Quad *)m_arr[i]));
-    //     // }
-    //     delete m_arr[m_size - 1];
-    // }
-    // else
-    // {
-    //     delete m_arr[index];
-    // }
-    // --m_size;
 }
 // returns the total area of all the shapes (rounded to int)
 int allShapes::totalArea() const
@@ -308,41 +211,7 @@ const allShapes &allShapes::operator+=(Shape *newS)
         {
             temp[i] = new Quad(*((Quad *)m_arr[i]));
         }
-
-        // if (typeid(m_arr[i]) == typeid(Circle))
-        // {
-        //     temp[i] = new Circle(*((Circle *)m_arr[i]));
-        // }
-        // // else if (typeid(m_arr[i]) == typeid(Square))
-        // // {
-
-        // //     temp[i] = new Square(*((Square *)m_arr[i]));
-        // // }
-        // // else if (typeid(m_arr[i]) == typeid(Quad))
-        // else
-        // {
-
-        //     temp[i] = new Quad(*((Quad *)m_arr[i]));
-        // }
-        // delete m_arr[i];
     }
-    // delete[] m_arr;
-    // // Copy last shape to the last cell
-    // if (typeid(newS) == typeid(Circle))
-    // {
-    //     temp[m_size - 1] = new Circle(*((Circle *)newS));
-    // }
-    // // else if (typeid(newS) == typeid(Square))
-    // // {
-
-    // //     temp[m_size - 1] = new Square(*((Square *)newS));
-    // // }
-    // // else if (typeid(newS) == typeid(Quad))
-    // else
-    // {
-
-    //     temp[m_size - 1] = new Quad(*((Quad *)newS));
-    // }
 
     Circle *c = dynamic_cast<Circle *>(newS);
     if (c)
@@ -386,7 +255,6 @@ const allShapes &allShapes::operator+=(Shape *newS)
             m_arr[i] = new Quad(*((Quad *)temp[i]));
         }
     }
-    // m_arr = temp;
 
     return *this;
 }
@@ -400,7 +268,6 @@ Shape *allShapes::operator[](int ind) const
 // returns a new allShape with all elements located at this and other
 allShapes allShapes::operator+(const allShapes &other) const
 {
-    // SHOULD I HAVE ALLOCATED A NEW SPACE AND FREED THE OTHERS?
     allShapes resultShape;
     for (int i = 0; i < m_size; i++)
     {
@@ -410,7 +277,6 @@ allShapes allShapes::operator+(const allShapes &other) const
     {
         resultShape.addShape(other.m_arr[i]);
     }
-    // for (int i = 0; i < resultShape.m_size; i++) cout << resultShape.m_arr[i] << endl;
     return resultShape;
 }
 // returns the number of elements

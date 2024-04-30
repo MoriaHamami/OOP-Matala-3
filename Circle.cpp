@@ -56,9 +56,7 @@ Circle operator+(int r, const Circle &other)
 const Circle &Circle::operator=(const Circle &other)
 {
     Shape::operator=(other);
-    // *this Shape::operator=(other);
     setRadius(other.m_radius);
-    // m_radius = other.m_radius;
     return *this;
 }
 

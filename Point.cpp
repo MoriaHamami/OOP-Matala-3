@@ -90,8 +90,6 @@ Point::operator int() const
 Point Point::operator+(const Point &other) const
 {
     Point *newPoint = new Point(*this);
-    // Point *newPoint = new Point(other);
-    // Point resultPoint(*this);
     newPoint->setX(other.getX() + getX());
     newPoint->setY(other.getY() + getY());
     return *newPoint;
@@ -100,7 +98,6 @@ Point Point::operator+(const Point &other) const
 Point Point::operator++(int)
 {
     Point *newPoint = new Point(*this);
-    //    Point resultPoint(*this);
     setX(getX() + 1);
     setY(getY() + 1);
     return *newPoint;
@@ -115,9 +112,7 @@ const Point &Point::operator++()
 // returns a new point with (x,y)*num
 Point operator*(int num, const Point &other)
 {
-     Point *newPoint = new Point(other);
-    // Point *newPoint = new Point(other);
-    // Point resultPoint(*this);
+    Point *newPoint = new Point(other);
     newPoint->setX(other.getX() * num);
     newPoint->setY(other.getY() * num);
     return *newPoint;
